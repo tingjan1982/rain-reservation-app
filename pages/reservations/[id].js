@@ -10,17 +10,26 @@ import useSWR from 'swr'
 
 const getReservation = async (id) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_RAIN_HOST}/web-reservations/${id}`, {
-        // 'headers': {
-        //     Authorization: `Basic ${Buffer.from('admin:nextpos').toString('base64')}`
-        // }
+        'headers': {
+            //Authorization: `Basic ${Buffer.from('').toString('base64')}`
+            'x-api-key': process.env.NEXT_PUBLIC_API_KEY
+        }
     })
+
     return await res.json()
 }
 
 export async function getServerSideProps({ params }) {
 
     const data = await getReservation(params.id)
-    console.log(data)
+
+
+    // notFound: true will cause page to return 404 page not found.
+    // if (data.status == 401) {
+    //     return {
+    //         notFound: true
+    //     }
+    // }
 
     return { props: { data } }
 }
@@ -43,7 +52,7 @@ export default function Reservation({ data }) {
     const [reservation, setReservation] = useState(data)
     useEffect(() => {
         console.log('updated reservation', reservation)
-        
+
     });
 
     const updateReservation = async () => {
@@ -56,13 +65,13 @@ export default function Reservation({ data }) {
         const data = await getReservation(id)
         setReservation(data)
     }
-    
+
     const confirm = async (id) => {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_RAIN_HOST}/web-reservations/${id}/confirm`, {
             'method': 'POST'
         })
-        
+
         updateReservation()
     }
 
@@ -78,6 +87,12 @@ export default function Reservation({ data }) {
     if (!reservation) {
         return (
             <div>Loading...</div>
+        )
+    }
+
+    if (reservation.status == 401) {
+        return (
+            <div>Not authorized...</div>
         )
     }
 

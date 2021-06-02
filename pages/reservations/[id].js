@@ -69,7 +69,10 @@ export default function Reservation({ data }) {
     const confirm = async (id) => {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_RAIN_HOST}/web-reservations/${id}/confirm`, {
-            'method': 'POST'
+            'method': 'POST',
+            'headers': {
+                'x-api-key': process.env.NEXT_PUBLIC_API_KEY
+            }
         })
 
         updateReservation()
@@ -78,7 +81,10 @@ export default function Reservation({ data }) {
     const cancel = async (id) => {
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_RAIN_HOST}/web-reservations/${id}/cancel`, {
-            'method': 'POST'
+            'method': 'POST',
+            'headers': {
+                'x-api-key': process.env.NEXT_PUBLIC_API_KEY
+            }
         })
 
         updateReservation()

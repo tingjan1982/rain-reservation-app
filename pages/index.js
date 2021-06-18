@@ -28,7 +28,7 @@ export default function Home({ allPostsData }) {
         </Box>
       </section>
       <section>
-        <h1>Release Note</h1>
+        <h1>Release Note</h1> 
         <a href="https://www.notion.so/Rain-App-38779bb132404fbe821ede58a7765e35">Details</a>
       </section>
       {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>

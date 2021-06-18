@@ -13,10 +13,9 @@ export default function Layout({ children, home }) {
     const useStyles = makeStyles({
         footer: {
             'text-align': 'center',
-            position: 'absolute',
             bottom: 0,
             width: '100% !important',
-            height: '100px !important',
+            'height': '100px !important',
             background: '#232423',
             color: '#e8ede8'
         }

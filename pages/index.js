@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import { Box, Typography } from '@material-ui/core'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()
@@ -21,13 +22,16 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Rain App Reservation is brought to you by Rain App.</p>
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography>Rain App 網路訂位 - 帶給您即時訂位功能</Typography>
+          <Typography>請到 <a href="https://rain-app.io">Rain App</a> 查看更多詳細產品資訊</Typography>
+        </Box>
       </section>
       <section>
         <h1>Release Note</h1>
         <a href="https://www.notion.so/Rain-App-38779bb132404fbe821ede58a7765e35">Details</a>
       </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
@@ -42,7 +46,7 @@ export default function Home({ allPostsData }) {
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
     </Layout>
   )
 }

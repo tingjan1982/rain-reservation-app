@@ -65,7 +65,7 @@ export default function ClientReservation({ data }) {
     const theme = useTheme()
     const classes = useStyles()
 
-    console.log({theme})
+    console.log({ theme })
 
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [selectedTime, setSelectedTime] = useState(new Date())
@@ -276,7 +276,7 @@ export default function ClientReservation({ data }) {
                                             {availableTables.map(tid => {
                                                 return (
                                                     <ToggleButton key={tid} value={tid} aria-label="table">
-                                                        <AddCircle/>
+                                                        <AddCircle />
                                                     </ToggleButton>
                                                 )
                                             })}
@@ -311,9 +311,11 @@ export default function ClientReservation({ data }) {
                                                         ),
                                                     }} />
                                             </Box>
-                                            <Box m={2}>
-                                                <Button disabled={!validation.reserve.actionEnabled()} onClick={() => handleReservation(data.id)} variant="contained" color="primary" size="large">確認訂位</Button>
-                                            </Box>
+                                            {!reservationResponse && (
+                                                <Box m={2}>
+                                                    <Button disabled={!validation.reserve.actionEnabled()} onClick={() => handleReservation(data.id)} variant="contained" color="primary" size="large">確認訂位</Button>
+                                                </Box>
+                                            )}
                                         </>
                                     )}
                                     {reservationResponse && (

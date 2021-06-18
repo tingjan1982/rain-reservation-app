@@ -12,7 +12,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/theme';
 
 export default function App(props) {
-    const { Component, pageProps } = props;
+    const { Component, pageProps } = props
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
